@@ -8,11 +8,14 @@
 ;; setup visible bell
 (setq visible-bell t) 
 
+;; try to allow access to ELPA etc through proxy when on corporate network
+(setq url-proxy-services '(("no_proxy" . "work\\.com")
+			   ("http" . "proxy.work.com:911")))
 
 ;; suggested linux font
 ;;(set-face-attribute 'fixed-pitch nil :font "Cascadia Code-12")
 
-;; usable widows font
+;; usable windows font
 (setq default-frame-alist
       '(
         (width . 115) ; character
@@ -26,12 +29,17 @@
 
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+(setq package-archives '(("melpa": "https://melpa.org/packages/")
+                         ("orgmode": "https://orgmode.org/elpa/")
+                         ("elpa": "https://elpa.gnu.org/packages/")))
+
 ;; Initialize package sources
 (require 'package)
 
-(setq package-archives '(("melpa": "https://melpa.org/packages/")
-			 ("orgmode": "https://orgmode.org/elpa/")
-			 ("elpa": "https://elpa.gnu.org/packages/")))
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+;; (require 'elpa-mirror)
+
+;; (setq package-archives '(("myelpa" . "~/myelpa/")))
 
 (package-initialize)
 (package-refresh-contents)
